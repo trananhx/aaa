@@ -15384,55 +15384,34 @@
 
 
 
-
-
-
-
-
-
      $(document).ready(function () {
+		 var table = $('#example').DataTable({
+			 data: testdata.data,
+             select: "single",
+			 columns: [
 
-         var table = $('#example').DataTable({
-             "data": testdata.data,
-             select:"single",
-             "columns": [
-                 
-                 { "data": "name" },
-                 { "data": "salary" },
+                 { data: "name" },
+                 { data: "salary" },
                  {
-                     "className": 'details-control',
-                     "orderable": false,
-                     "data": null,
-                     "defaultContent": '',
-                     "render": function () {
-                         return '<i class="fa fa-plus-square" aria-hidden="true"></i>';
-                     },
+					 className: 'details-control',
+					 orderable: false,
+					 data: null,
+					 defaultContent: '',
+					 render: function (data, type, row) {
+					 	 let item = JSON.stringify(row);
+						 return `<i class='fa fa-plus-square' data-item='${item}' aria-hidden='true'></i>`;
+					 },
                      width:"10px"
                  },
              ],
-             "order": [[1, 'asc']]
+			 order: [[1, 'asc']]
          });
 
          // Add event listener for opening and closing details
-         $('#example tbody').on('click', 'td.details-control', function () {
-             var tr = $(this).closest('tr');
-             var tdi = tr.find("i.fa");
-             var row = table.row(tr);
-
-             if (row.child.isShown()) {
-                 // This row is already open - close it
-                 row.child.hide();
-                 tr.removeClass('shown');
-                 tdi.first().removeClass('fa-minus-square');
-                 tdi.first().addClass('fa-plus-square');
-             }
-             else {
-                 // Open this row
-                 row.child(format(row.data())).show();
-                 tr.addClass('shown');
-                 tdi.first().removeClass('fa-plus-square');
-                 tdi.first().addClass('fa-minus-square');
-             }
+         $('#example tbody').on('click', 'td.details-control i', function () {
+			 $("#myModal").modal()
+			 var html = format(JSON.parse($(this).attr('data-item')));
+			 $('.modal-body').html(html);
          });
 
          table.on("user-select", function (e, dt, type, cell, originalEvent) {
@@ -15440,26 +15419,29 @@
                  e.preventDefault();
              }
          });
+
+		 function format(d){
+
+			 // `d` is the original data object for the row
+			 return `<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">
+             <tr> 
+                 <td>Full name: </td>
+                 <td class="pl-3"> ${d.name}</td>
+             </tr> 
+             <tr>
+                 <td>Extension number: </td>
+                 <td class="pl-3"> <a href="${d.extn}"> ${d.name}</a></td>
+             </tr>
+             <tr>
+                 <td>Extra info: </td>
+                 <td class="pl-3"> ${d.office}</td>
+             </tr>
+         </table>`;
+		 }
      });
 
-    function format(d){
-        
-         // `d` is the original data object for the row
-         return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
-             '<tr>' +
-                 '<td>Full name:</td>' +
-                 '<td>' + d.name + '</td>' +
-             '</tr>' +
-             '<tr>' +
-                 '<td>Extension number:</td>' +
-                 '<td>' + d.extn + '</td>' +
-             '</tr>' +
-             '<tr>' +
-                 '<td>Extra info:</td>' +
-                 '<td> ' + d.office + '</td>' +
-             '</tr>' +
-         '</table>';  
-    }
+
+
 
 
 
