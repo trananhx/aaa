@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="vn">
+
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="/">
+	<title>EA SPORTS™</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no" />
+	<meta name="keywords" content="ctxd" />
+	<meta name="description" content="SPORTS™">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/main.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/dataTables.css">
+	<!--===============================================================================================-->
+	<script type="text/javascript" charset="utf8" src="js/dataTables.js"></script>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<script type="text/javascript" charset="utf8" src="js/data.js"></script>
+	<!--===============================================================================================-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js" integrity="sha512-9CWGXFSJ+/X0LWzSRCZFsOPhSfm6jbnL+Mpqo0o8Ke2SYr8rCTqb4/wGm+9n13HtDE1NQpAEOrMecDZw4FXQGg==" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css" integrity="sha512-X/RSQYxFb/tvuz6aNRTfKXDnQzmnzoawgEQ4X8nZNftzs8KFFH23p/BA6D2k0QCM4R0sY1DEy9MIY9b3fwi+bg==" crossorigin="anonymous" /> </head>
+
+<body>
+	<div id="fullpage">
+		<section class="content1" id="section1"> </section>
+		<section class="content2" id="section2">
+			<div>
+				<table width="100%" class="display" id="example" cellspacing="0" data-order='[[ 1, "asc" ]]'>
+					<thead>
+						
+					</thead>
+				</table>
+			</div>
+		</section>
+		<section class="fp-auto-height" id="section6">
+			<footer>
+				<div class="container">
+					<div class="flex-c-m flex-w p-b-18">
+						<a href="#" class="m-all-1"> <img src="images/icons/icon-pay-01.png" alt="ICON-PAY"> </a>
+						<a href="#" class="m-all-1"> <img src="images/icons/icon-pay-02.png" alt="ICON-PAY"> </a>
+						<a href="#" class="m-all-1"> <img src="images/icons/icon-pay-03.png" alt="ICON-PAY"> </a>
+						<a href="#" class="m-all-1"> <img src="images/icons/icon-pay-04.png" alt="ICON-PAY"> </a>
+						<a href="#" class="m-all-1"> <img src="images/icons/icon-pay-05.png" alt="ICON-PAY"> </a>
+					</div>
+					<style>
+					footer {
+						opacity: 1;
+						color: #898989;
+					}
+					
+					footer .policy {
+						margin-top: 1rem;
+					}
+					
+					footer .policy a {
+						color: white;
+					}
+
+					</style>
+					<div class="stext-107">
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->Copyright &copy;
+						<script>
+						document.write(new Date().getFullYear());
+
+						</script> All rights reserved | Made with </i> by <a href="http://harfuture.com/" target="_blank">harfuture</a>
+						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					</div>
+				</div>
+			</footer>
+		</section>
+		<script language="JavaScript" type="text/javascript" charset="utf-8">
+		$(document).ready(function () {
+			$('.wheel').addClass('wheel-spin');
+			$('.menu-mobile').click(function () {
+				if($('ul.nav-menu-moblie').hasClass('expanded')) {
+					$('ul.nav-menu-moblie').removeClass('expanded animated fadeInRight fadeOutRight');
+				} else {
+					$('ul.nav-menu-moblie').addClass('expanded animated fadeInRight');
+				}
+				return false;
+			});
+			$('#close-menu').click(function () {
+				$('ul.nav-menu-moblie').removeClass('fadeInRight');
+				$('ul.nav-menu-moblie').addClass('fadeOutRight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+					$(this).removeClass('expanded animated fadeOutRight');
+				});
+				return false;
+			});
+			$('ul.nav-menu-moblie li a').click(function () {
+				if($('ul.nav-menu-moblie').hasClass('fadeInRight')) {
+					$('ul.nav-menu-moblie').addClass('fadeOutRight').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+						$(this).removeClass('expanded animated fadeOutRight');
+					});
+				}
+			});
+			$("#owl-demo").owlCarousel({
+				autoPlay: 3000, //Set AutoPlay to 3 seconds
+				items: 5,
+				singleItem: true
+			});
+			$('.wheel').mouseover(function () {
+				if($('.wheel').hasClass('wheel-spin')) {
+					$('.wheel').removeClass('wheel-spin');
+				} else {
+					$('.wheel').addClass('wheel-spin');
+				}
+				return false;
+			});
+			$('#fullpage').fullpage({
+				sectionsColor: ['transparent'],
+				sectionSelector: '#fullpage > section',
+				anchors: ['1', '2', '3', '4', '5'],
+				slideSelector: '',
+				navigation: true,
+				navigationPosition: 'right',
+				autoScrolling: true,
+				scrollHorizontally: true,
+				keyboardScrolling: true,
+				animateAnchor: true,
+				recordHistory: true,
+				lazyLoading: true,
+			});
+			$(".title-faq").each(function (index) {
+				var sublist = $(this).find(".faq");
+				var anssublist = $(this).find(".ans");
+				sublist.click(function () {
+					$(".faq").removeClass("active");
+					if(anssublist.is(":visible")) {
+						anssublist.slideUp();
+					} else {
+						// hide others
+						$(".ans").filter(":visible").slideUp();
+						anssublist.slideDown(function () {
+							anssublist.parent().find(".faq").addClass("active");
+						});
+					}
+					return false;
+				});
+			});
+		});
+
+		</script>
+	</div>
+	<style>
+	.dataTables_wrapper::-webkit-scrollbar {
+		width: 0.5em !important;
+	}
+	
+	.dataTables_wrapper::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3) !important;
+	}
+	
+	.dataTables_wrapper::-webkit-scrollbar-thumb {
+		background-color: darkgrey !important;
+		outline: 1px solid slategrey !important;
+	}
+	
+	@media only screen and (max-width: 1200px) {
+		#example_wrapper {
+			max-height: 780px !important;
+			overflow-y: scroll;
+		}
+	}
+	
+	@media only screen and (max-width: 500px) {
+		#example_filter label {
+			display: flex !important;
+			width: 90%;
+			margin: auto;
+		}
+		#example_filter input {
+			width: 70%;
+		}
+		.dataTables_length {
+			display: none;
+		}
+	}
+
+	</style>
+</body>
+
+</html>
